@@ -1,6 +1,6 @@
 package Pocima;
-import juegoCartas.Atributo;
-import juegoCartas.Carta;
+import JuegoCartas.Atributo;
+import JuegoCartas.Carta;
 
 public class PocimaFortalecedor extends Pocima {
 	private double porcentaje;
@@ -14,9 +14,16 @@ public class PocimaFortalecedor extends Pocima {
 	@Override
 	public double aplicar(Atributo atributo) {
 		 double valor = atributo.getValor();
-	     double incremento = (valor * this.porcentaje) / 100;
-	     return valor + incremento;
+	     return valor += valor * this.getPorcentaje() / 100;
+	     
 		
+	}
+	public double getPorcentaje() {
+		return porcentaje;
+	}
+
+	public void setPorcentaje(double porcentaje) {
+		this.porcentaje = porcentaje;
 	}
 	
 

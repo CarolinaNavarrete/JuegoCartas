@@ -1,4 +1,4 @@
-package juegoCartas;
+package JuegoCartas;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,6 +56,18 @@ public class Carta {
 			return atributosCarta.size();
 		}
 		
+		//Obtener el valor de una carta por nombre del atributo
+		public double getValorAtributo(String atributo){
+			for(int i=0; i<atributosCarta.size();i++){
+				Atributo aux =atributosCarta.get(i);
+				if(aux.getNombre().equals(atributo)){
+					return aux.getValor();
+				}
+			}
+			return -1;
+		}
+		
+		
 		//Obtener los nombres de los atributos
 		public ArrayList<String> getNombresAtributo(){
 			ArrayList<String> nombresAtributo = new ArrayList<String>();
@@ -102,6 +114,10 @@ public class Carta {
 				return false;
 		}
 		
+		public Atributo getAtributoObstinado() {
+			return atributosCarta.get(0);
+		}
+		
 		//JUEGO
 		public String getAtributoAleatorio(){
 			String atributoRandom;
@@ -122,20 +138,6 @@ public class Carta {
 		@Override
 		public String toString() {
 			return "La carta " + nombre + "posee los siguientes atributos: " + atributosCarta;
-		}
-
-		public Atributo getAtributoMaxValor() {
-			Atributo aux = new Atributo(null, 0);
-			for(Atributo atributo: atributosCarta){
-				if (atributo.getValor() > aux.getValor())
-					aux = atributo;
-			}
-			return aux;
-		}
-
-		public Atributo getAtributoRandom() {
-			int i = (int) Math.floor(Math.random() * atributosCarta.size());
-			return this.atributosCarta.get(i);
 		}
 		
 		

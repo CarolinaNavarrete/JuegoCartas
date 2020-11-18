@@ -1,18 +1,19 @@
-package juegoCartas;
+package JuegoCartas;
 import Estrategias.*;
 import Pocima.*;
 
-import java.util.ArrayList;
 public class Jugador implements Estrategia {
 
 		private String nombre;
+	//	private ArrayList<Carta> cartas;
+		private Mazo cartasJugador;
 		private Estrategia estrategias;
-		protected Mazo cartasJugador;
 		
 		//Constructor
 		public Jugador(String nombre){
-			this.nombre = nombre; 
+			this.nombre = nombre;
 			cartasJugador = new Mazo();
+			estrategias = new Estrategia();
 		}
 		
 		//Metodos GET and SET de los atributos
@@ -28,18 +29,29 @@ public class Jugador implements Estrategia {
 		public void setEstrategia(Estrategia estrategia) {
 			this.estrategias = estrategia;
 		}
+		
 
-		public Estrategia getEstrategias() {
-			return estrategias;
+		//Metodos get, remove de cartas
+		
+		
+		public int getCantCartas(){
+			return cartas.size();
 		}
 		
+		public Mazo getCartasJugador() {
+			return cartasJugador;
+		}
+
+		public void setCartasJugador(Mazo cartasJugador) {
+			this.cartasJugador = cartasJugador;
+		}
 
 		//Metodos para el juego
-		public void recibirCarta(Carta carta) {
-			cartas.add(carta);
+		public void recibirCarta(Carta c1){
+			cartas.add(c1);
 		}
 		
-		public Mazo tomarCarta(){
+		public Carta tomarCarta(){
 			//Toma una carta y me la saca de mi mazo
 			return cartas.remove(0);
 		}
@@ -49,20 +61,38 @@ public class Jugador implements Estrategia {
 			return !cartas.isEmpty();
 		}
 		
-		public String seleccionarAtributo(){
-			if(this.tieneCartas()){
-				Mazo c = cartas.get(0);
-			}
-			return cartas.get(0).getAtributoAleatorio();
-		}
+		//public String seleccionarAtributo(){
+		//	if(this.tieneCartas()){
+		//		Carta c = cartas.get(0);
+	//			// HACER ESTRATEGIA
+		//	}
+	//		return cartas.get(0).getAtributoAleatorio();
+	//	}
 		
-		public void addPocimaAcarta(Pocima pocima) {
+		 public String seleccionarAtributo() {
+		        if (this.cartasJugador.tieneCartasDisponibles()) {
+		            Carta c = cartasJugador.getCartaJugable();
+		            Atributo atributoSeleccionado = estrategias.elegirAtributo(c);
+		            if (atributoSeleccionado != null) {
+		                return atributoSeleccionado.getNombre();
+		            }
+		        }
+		        return null;
+		    }
+		// PREGUNTAR
+		/*public void addPocimaAcarta(Pocima pocima) {
 			int i=(int) Math.floor(Math.random()* cartas.size());
-			Mazo cartaAux =cartas.get(i);
+			Carta cartaAux =cartas.get(i);
 			cartaAux.setPocima(pocima);
 		}
-
+*/
+		@Override
 		public Atributo elegirAtributo(Carta carta) {
+			
 			return estrategias.elegirAtributo(carta);
-		}	
+		}
+		
+		
+		
+		
 }

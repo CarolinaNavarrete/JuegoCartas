@@ -1,6 +1,6 @@
 package Pocima;
-import JuegoCartas.Atributo;
-import JuegoCartas.Carta;
+import juegoCartas.Atributo;
+import juegoCartas.Carta;
 
 public class PocimaFortalecedor extends Pocima {
 	private double porcentaje;

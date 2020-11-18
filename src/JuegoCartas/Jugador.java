@@ -1,4 +1,4 @@
-package JuegoCartas;
+package juegoCartas;
 import Estrategias.*;
 import Pocima.*;
 
@@ -6,14 +6,13 @@ import java.util.ArrayList;
 public class Jugador implements Estrategia {
 
 		private String nombre;
-		private ArrayList<Carta> cartas;
 		private Estrategia estrategias;
+		protected Mazo cartasJugador;
 		
 		//Constructor
-		public Jugador(String nombre,Estrategia estrategia){
+		public Jugador(String nombre){
 			this.nombre = nombre; 
-			this.estrategias = estrategia;
-			cartas = new ArrayList<Carta>();
+			cartasJugador = new Mazo();
 		}
 		
 		//Metodos GET and SET de los atributos
@@ -29,28 +28,18 @@ public class Jugador implements Estrategia {
 		public void setEstrategia(Estrategia estrategia) {
 			this.estrategias = estrategia;
 		}
+
+		public Estrategia getEstrategias() {
+			return estrategias;
+		}
 		
 
-		//Metodos get, add, remove de cartas
-		public ArrayList<Carta> getCartas() {
-			ArrayList<Carta> mazoJugador= new ArrayList<Carta>();
-			for (Carta mj : cartas) {
-				mazoJugador.add(mj);
-			}
-			return mazoJugador;
-		}
-		
-		
-		public int getCantCartas(){
-			return cartas.size();
-		}
-		
 		//Metodos para el juego
-		public void recibirCarta(Carta c1){
-			cartas.add(c1);
+		public void recibirCarta(Carta carta) {
+			cartas.add(carta);
 		}
 		
-		public Carta tomarCarta(){
+		public Mazo tomarCarta(){
 			//Toma una carta y me la saca de mi mazo
 			return cartas.remove(0);
 		}
@@ -62,25 +51,18 @@ public class Jugador implements Estrategia {
 		
 		public String seleccionarAtributo(){
 			if(this.tieneCartas()){
-				Carta c = cartas.get(0);
-				// HACER ESTRATEGIA
+				Mazo c = cartas.get(0);
 			}
 			return cartas.get(0).getAtributoAleatorio();
 		}
 		
 		public void addPocimaAcarta(Pocima pocima) {
 			int i=(int) Math.floor(Math.random()* cartas.size());
-			Carta cartaAux =cartas.get(i);
+			Mazo cartaAux =cartas.get(i);
 			cartaAux.setPocima(pocima);
 		}
 
-		@Override
 		public Atributo elegirAtributo(Carta carta) {
-			
 			return estrategias.elegirAtributo(carta);
-		}
-		
-		
-		
-		
+		}	
 }

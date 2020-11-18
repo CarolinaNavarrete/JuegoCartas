@@ -1,6 +1,6 @@
 package Pocima;
-import JuegoCartas.Atributo;
-import JuegoCartas.Carta;
+import juegoCartas.Atributo;
+import juegoCartas.Carta;
 
 
 public abstract class Pocima {
@@ -9,8 +9,6 @@ public abstract class Pocima {
 	public Pocima(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
 	
 	public String getNombre() {
 		return nombre;

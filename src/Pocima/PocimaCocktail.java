@@ -1,16 +1,15 @@
 package Pocima;
 
 import java.util.ArrayList;
-import JuegoCartas.Atributo;
-import JuegoCartas.Carta;
 
+import juegoCartas.Atributo;
+import juegoCartas.Carta;
 
 public class PocimaCocktail extends Pocima {
 	private ArrayList<Pocima> pocimas;
 	
 	public PocimaCocktail(String nombre){
 		super(nombre);
-		
 		this.pocimas = new ArrayList<Pocima>();
 	}
 	
@@ -19,7 +18,7 @@ public class PocimaCocktail extends Pocima {
 	}
 	
 	public ArrayList<Pocima> getPocima(){
-		ArrayList<Pocima> poc = new ArrayList<>();
+		ArrayList<Pocima> poc = new ArrayList<Pocima>();
 		for(Pocima copiaPocima : pocimas) {
 			poc.add(copiaPocima);
 		}

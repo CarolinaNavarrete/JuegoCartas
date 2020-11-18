@@ -1,4 +1,4 @@
-package JuegoCartas;
+package juegoCartas;
 
 public class Atributo {
 	//Varibales

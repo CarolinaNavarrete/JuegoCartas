@@ -1,7 +1,7 @@
 package Estrategias;
 
-import JuegoCartas.Atributo;
-import JuegoCartas.Carta;
+import juegoCartas.Atributo;
+import juegoCartas.Carta;
 
 public class EstrategiaObstinado implements Estrategia {
 	private String cabala;
@@ -11,7 +11,6 @@ public class EstrategiaObstinado implements Estrategia {
 		this.cabala= cabala;
 	}
 	
-	@Override
 	public Atributo elegirAtributo(Carta carta) {
 		for(Atributo atributoIndex : carta.getAtributosCarta()) {
 			if(atributoIndex.getNombre().equals(cabala))

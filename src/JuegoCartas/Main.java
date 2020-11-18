@@ -1,4 +1,4 @@
-package JuegoCartas;
+package juegoCartas;
 import Pocima.*;
 import Estrategias.*;
 

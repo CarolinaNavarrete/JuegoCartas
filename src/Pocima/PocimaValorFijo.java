@@ -1,6 +1,6 @@
 package Pocima;
-import JuegoCartas.Atributo;
-import JuegoCartas.Carta;
+import juegoCartas.Atributo;
+import juegoCartas.Carta;
 
 public class PocimaValorFijo extends Pocima {
 	private int valor;
@@ -10,8 +10,18 @@ public class PocimaValorFijo extends Pocima {
 		this.valor = valor;
 	}
 	
+	public int getValor() {
+		return valor;
+	}
+
+
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
+
 
 	public double aplicar(Atributo atributo) {
-		return this.valor;
+		double valorAtributo = this.getValor();
+		return valorAtributo;
 	}
 }

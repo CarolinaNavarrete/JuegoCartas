@@ -1,6 +1,6 @@
 package Pocima;
-import JuegoCartas.Atributo;
-import JuegoCartas.Carta;
+import juegoCartas.Atributo;
+import juegoCartas.Carta;
 
 public class PocimaAtributoSeleccionado extends Pocima {
 	
@@ -13,16 +13,35 @@ public class PocimaAtributoSeleccionado extends Pocima {
 		this.porcentaje = porcentaje;
 	}
 	
+	public double getPorcentaje() {
+		return porcentaje;
+	}
+
+
+	public void setPorcentaje(double porcentaje) {
+		this.porcentaje = porcentaje;
+	}
+
+
+	public String getNombreAtributo() {
+		return nombreAtributo;
+	}
+
+
+	public void setNombreAtributo(String nombreAtributo) {
+		this.nombreAtributo = nombreAtributo;
+	}
+
+
 	@Override
 	public double aplicar(Atributo atributo) {
 		int valorPorcentaje=100;
-		if(atributo.getNombre().equals(nombreAtributo)){
-			double valor = atributo.getValor();
-			double incremento = (valor * this.porcentaje) / valorPorcentaje;
-            return valor + incremento;
+		if(atributo.getNombre().equals(this.getNombreAtributo())){
+			double valorAtributo = atributo.getValor();
+			return valorAtributo += valorAtributo * this.getPorcentaje() / valorPorcentaje;
 		}
-
-		return atributo.getValor();
+		else
+			return atributo.getValor();
 	}
 	
 	

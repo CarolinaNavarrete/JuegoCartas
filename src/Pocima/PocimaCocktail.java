@@ -2,8 +2,8 @@ package Pocima;
 
 import java.util.ArrayList;
 
-import juegoCartas.Atributo;
-import juegoCartas.Carta;
+import JuegoCartas.Atributo;
+import JuegoCartas.Carta;
 
 public class PocimaCocktail extends Pocima {
 	private ArrayList<Pocima> pocimas;

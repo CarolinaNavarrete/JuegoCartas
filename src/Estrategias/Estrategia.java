@@ -1,6 +1,6 @@
 package Estrategias;
-import juegoCartas.Carta;
-import juegoCartas.Atributo;
+import JuegoCartas.Carta;
+import JuegoCartas.Atributo;
 
 public interface Estrategia {
 

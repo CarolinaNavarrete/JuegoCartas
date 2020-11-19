@@ -1,7 +1,7 @@
 package Estrategias;
 
-import juegoCartas.Atributo;
-import juegoCartas.Carta;
+import JuegoCartas.Atributo;
+import JuegoCartas.Carta;
 
 public class EstrategiaAmbicioso implements Estrategia{
 

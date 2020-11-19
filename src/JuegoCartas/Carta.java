@@ -126,6 +126,22 @@ public class Carta {
 			return atributoRandom;
 		}
 		
+		public Atributo getAtributoMaxValor() {
+			Atributo aux = new Atributo(null, 0);
+			for(Atributo atributo: atributosCarta){
+				if (atributo.getValor() > aux.getValor())
+					aux = atributo;
+			}
+			return aux;
+		}
+		
+		public Atributo getAtributoRandom() {
+			int i = (int) Math.floor(Math.random() * atributosCarta.size());
+			return this.atributosCarta.get(i);
+		}
+		
+		
+		
 		//Retorno la copia de las Cartas
 		public Carta copiaContenido(){
 			Carta copia= new Carta(nombre);
@@ -139,7 +155,22 @@ public class Carta {
 		public String toString() {
 			return "La carta " + nombre + "posee los siguientes atributos: " + atributosCarta;
 		}
-		
-		
 
+		
+		//PREEEGUNTAAAARRRR
+		public int competirCarta(Carta c, String atributo) {
+			 if (this.getValorAtributo(atributo) < c.getValorAtributo(atributo))
+				 	return -1;
+			 else if (this.getValorAtributo(atributo) > c.getValorAtributo(atributo))
+				 return 1;
+			 else 
+				 return 0; //SON IGUALES 
+		}
+
+		/*@Override
+		public int compareTo(Carta c) {
+		if(this.getValorAtributo()
+			return 0;
+		}
+        */
 }

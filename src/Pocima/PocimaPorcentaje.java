@@ -2,10 +2,10 @@ package Pocima;
 import JuegoCartas.Atributo;
 import JuegoCartas.Carta;
 
-public class PocimaFortalecedor extends Pocima {
+public class PocimaPorcentaje extends Pocima {
 	private double porcentaje;
 
-	public PocimaFortalecedor(String nombre,double porcentaje) {
+	public PocimaPorcentaje(String nombre,double porcentaje) {
 		super(nombre);
 		this.porcentaje = porcentaje;
 	}
@@ -25,6 +25,9 @@ public class PocimaFortalecedor extends Pocima {
 	public void setPorcentaje(double porcentaje) {
 		this.porcentaje = porcentaje;
 	}
+
+
+
 	
 
 }

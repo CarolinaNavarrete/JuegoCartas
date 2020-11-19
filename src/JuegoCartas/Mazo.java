@@ -1,4 +1,4 @@
-package juegoCartas;
+package JuegoCartas;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +11,8 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+
+import Pocima.Pocima;
 
 	import java.util.ArrayList;
 import java.util.Collections;
@@ -46,6 +48,17 @@ import java.util.Collections;
 		public int getCantidadCartas(){
 			return mazo.size();
 		}
+		
+		public Carta remove(){
+			if(mazo != null)
+				return mazo.remove(0);
+			else
+				return null;
+		}
+		
+		public boolean tieneCarta() {
+			return mazo.size()>0;
+		}
 
 		//Cuando creamos el mazo le ponemos el tope de "cantidadCartasMax" para que se sumen
 		//al mazo y controlamos que la carta corresponda al mazo
@@ -69,22 +82,19 @@ import java.util.Collections;
 			Collections.shuffle(mazo);
 		}
 		
-		/*Reparte el mazo en partes iguales, si el numero es impar el j1 tiene una carta 
-		 * extra*/
-		public void darCartas(Jugador j1, Jugador j2){
-			mezclarMazo();
-			for(int i=mazo.size()-1; i>=0;i--){
-				if (i%2==0){
-					j1.recibirCarta(mazo.remove(i));
-				}else{
-					j2.recibirCarta(mazo.remove(i));
-				}
-			}
+		public Carta primerCarta(){
+			return mazo.get(0);
+		}
+	
+		public void addPocimaAcarta(Pocima pocima) {
+			int i = (int) Math.floor(Math.random() * mazo.size());
+			Carta cartaAux = mazo.get(i);
+			cartaAux.setPocima(pocima);//carta tiene Pocima, no elementoPocima
 		}
 		
 		//Realiza la copia del mazo
 		public Mazo copiaContenido(){
-			Mazo copia= new Mazo(nombreMazo, cantidadCartasMax);
+			Mazo copia= new Mazo();
 			for (Carta c : mazo) {
 				copia.agregarCarta(c.copiaContenido());
 			}
@@ -123,15 +133,4 @@ import java.util.Collections;
 		            e.printStackTrace();
 		        }
 		    }
-		 
-			//Obtener el valor de una carta por nombre del atributo
-			public double getValorAtributo(String atributo){
-				for(int i=0; i<atributosCarta.size();i++){
-					Atributo aux =atributosCarta.get(i);
-					if(aux.getNombre().equals(atributo)){
-						return aux.getValor();
-					}
-				}
-				return -1;
-			}
 }

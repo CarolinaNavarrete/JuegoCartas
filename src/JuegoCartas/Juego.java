@@ -1,4 +1,4 @@
-package juegoCartas;
+package JuegoCartas;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,16 +41,32 @@ public class Juego {
 		
 		// INICIA JUEGO
 		public void repartirCartas(){ 	
-			cartas.darCartas(j1, j2);
+			repartirMazo();
 			if(seJuegaConPocimas()) {
 				mezclarPocimas();
 				repartirPocimas();
 			}
 		}
+		
+		/*Reparte el mazo en partes iguales, si el numero es impar el j1 tiene una carta 
+		 * extra*/
+		public void repartirMazo(){
+			cartas.mezclarMazo();
+			int cantidadCartas= cartas.getCantidadCartas();
+			
+			for(int i=cantidadCartas-1; i>=0;i--) {
+				if (i%2==0){
+					j1.tomarCarta();
+				}else{
+					j1.tomarCarta();
+				}
+			}	
+		}
+		
 		public void jugar(){
 			int rondasJugadas=1;
-			Mazo c1;
-			Mazo c2;
+			Carta c1;
+			Carta c2;
 			double puntaje1;
 			double puntaje2;
 			boolean ganoJ1=true;
@@ -65,29 +81,30 @@ public class Juego {
 				System.out.println("------- Ronda " + rondasJugadas + " -------");
 				if(ganoJ1){
 					nombreAtributo= j1.seleccionarAtributo();
-					Mazo cartaJ1 = j1.tomarCarta();
 				}else{
 					nombreAtributo= j2.seleccionarAtributo();
-					Mazo cartaJ2 = j2.tomarCarta();
 				}
 				
-				competirCarta(cartas,nombreAtributo);
 				c1= j1.tomarCarta();
+				c2= j2.tomarCarta();
+				
 				puntaje1= c1.getValorAtributo(nombreAtributo);
 				System.out.println("La carta de " + j1.getNombre() + " es " + c1.getNombre() + " con "+ nombreAtributo + 
 						" " +puntaje1);
-				c2= j2.tomarCarta();
+				
 				puntaje2= c2.getValorAtributo(nombreAtributo);
 				System.out.println("La carta de " + j2.getNombre() + " es " + c2.getNombre() + " con "+ nombreAtributo + 
 						" " +puntaje2);
 				
+				int resultado= c1.competirCarta(c2, nombreAtributo);
+				
 				//compara los valores del atributo (mayor se lleva 2 cartas y arranca la ronda)	
-				if(puntaje1>puntaje2){
+				if(resultado>0){
 					j1.recibirCarta(c1);
 					j1.recibirCarta(c2);
 					ganoJ1=true;
 					System.out.println("GANO J1");
-				}else if(puntaje1<puntaje2){
+				}else if(resultado<0){
 					j2.recibirCarta(c1);
 					j2.recibirCarta(c2);
 					ganoJ1=false;
@@ -98,7 +115,7 @@ public class Juego {
 					System.out.println("EMPATARON");
 				}
 				rondasJugadas++;
-				System.out.println(j1.getNombre()+ " posee ahora " + j1.getCantCartas() + " cartas y " + j2.getNombre()+ " posee ahora " + j2.getCantCartas() + " cartas");
+				System.out.println(j1.getNombre()+ " posee ahora " + j1.getCartasJugador() + " cartas y " + j2.getNombre()+ " posee ahora " + j2.getCartasJugador() + " cartas");
 			}
 		}
 

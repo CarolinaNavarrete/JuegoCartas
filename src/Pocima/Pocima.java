@@ -1,6 +1,6 @@
 package Pocima;
-import juegoCartas.Atributo;
-import juegoCartas.Carta;
+import JuegoCartas.Atributo;
+import JuegoCartas.Carta;
 
 
 public abstract class Pocima {
